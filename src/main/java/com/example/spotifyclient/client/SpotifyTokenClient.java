@@ -22,12 +22,13 @@ public class SpotifyTokenClient {
     public SpotifyTokenClient(
             CacheManager cacheManager,
             @Value("${spotify.client-id}") String clientId,
-            @Value("${spotify.client-secret}") String clientSecret) {
+            @Value("${spotify.client-secret}") String clientSecret,
+            @Value("${spotify.auth-url}") String authUrl) {
         this.cacheManager = cacheManager;
         this.clientId = clientId;
         this.clientSecret = clientSecret;
         this.tokenRestClient = RestClient.builder()
-                .baseUrl("https://accounts.spotify.com")
+                .baseUrl(authUrl)
                 .build();
     }
 
